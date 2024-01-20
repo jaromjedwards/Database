@@ -23,10 +23,13 @@ VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
 -- Alter Tony's account type to Admin
 UPDATE "account" SET account_type = 'Admin' WHERE account_firstname = 'Tony';
 
+-- Delete Tony file entirely
 DELETE FROM "account" WHERE account_firstname = 'Tony';
 
 --Adapt GM Hummer description
-REPLACE(inv_description, small interiors, large interior) WHERE inv_id = 10;
+UPDATE inventory
+SET inv_description = REPLACE(inv_description, 'small interiors', 'large interior')
+WHERE inv_id = 10;
 
 -- Use INNER JOIN to select fields from inventory and classification tables
 SELECT 
@@ -41,6 +44,6 @@ WHERE
     class.classification_name = 'Sport';
 
 -- Update all records in the inventory table to add "/vehicles" to the middle of the file path in the inv_image and inv_thumbnail columns
-UPDATE "inventory"
-REPLACE(inv_thumbnail, 'images', 'images/vehicles');
-REPLACE(inv_image, 'images', 'images/vehicles');
+UPDATE inventory
+SET inv_thumbnail = REPLACE(inv_thumbnail, 'images', 'images/vehicles'),
+    inv_image = REPLACE(inv_image, 'images', 'images/vehicles');
